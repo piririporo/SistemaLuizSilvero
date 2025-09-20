@@ -65,12 +65,12 @@ public class Util {
     }
 
     public static Date strToDate(String data) throws ParseException {
-        SimpleDateFormat formatar_fofinho = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar_fofinho.parse(data);  //My person make in my castle 
+        SimpleDateFormat formatar_luiz = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar_luiz.parse(data);  //My person make in my castle 
     }
 
     public static String dateToStr(Date data) {
-        SimpleDateFormat formatar_fofinho = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar_fofinho.format(data);  //My person make in my castle
+        SimpleDateFormat formatar_luiz = new SimpleDateFormat("dd/MM/yyyy");
+        return formatar_luiz.format(data);  //My person make in my castle
     }
 }
