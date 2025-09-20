@@ -269,7 +269,13 @@ public class JDlgProduto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        Util.habilitar(false,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);
       
+        Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+      
+        Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);              
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
@@ -282,21 +288,40 @@ public class JDlgProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
+      Util.habilitar(true,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);
       
+        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+      
+        Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
+Util.habilitar(true,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);
       
+        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+      
+        Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);      
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here
+         Util.pergunta("Deseja excluir??"); 
          
    
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        // TODO add your handling code here:
+        Util.habilitar(false,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);
+      
+        Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+      
+        Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+                , jBtnConfirmar, jBtnCancelar);        
        
         
         

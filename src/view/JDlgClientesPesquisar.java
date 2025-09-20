@@ -19,7 +19,7 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
     public JDlgClientesPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisar ");
+        setTitle("clienets Pesquisar");
         setLocationRelativeTo(null);  
         
        
