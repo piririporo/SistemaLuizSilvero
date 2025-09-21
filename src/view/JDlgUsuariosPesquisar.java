@@ -4,9 +4,6 @@
  */
 package view;
 
-
-
-
 /**
  *
  * @author USER
