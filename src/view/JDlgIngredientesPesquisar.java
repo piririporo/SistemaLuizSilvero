@@ -11,21 +11,21 @@ package view;
  *
  * @author USER
  */
-public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
-    JDlgUsuarios jDlgUsuarios;
+public class JDlgIngredientesPesquisar extends javax.swing.JDialog {
+    JDlgIngredientes jDlgIngredientes;
     /**
-     * Creates new form JDlgUsuariosPesquisar
+     * Creates new form JDlgProdutoPesquisar
      */
-    public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
+    public JDlgIngredientesPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisar Usuários");
+        setTitle("Pesquisar Ingredientes");
         setLocationRelativeTo(null);  
         
-       
+      
     }
-public void setTelaPai(JDlgUsuarios jDlgUsuarios){
-    this.jDlgUsuarios = jDlgUsuarios;
+public void setTelaPai(JDlgIngredientes jDlgIngredientes){
+    this.jDlgIngredientes = jDlgIngredientes;
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,21 +108,27 @@ public void setTelaPai(JDlgUsuarios jDlgUsuarios){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgIngredientesPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgIngredientesPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgIngredientesPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgIngredientesPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgUsuariosPesquisar dialog = new JDlgUsuariosPesquisar(new javax.swing.JFrame(), true);
+                JDlgIngredientesPesquisar dialog = new JDlgIngredientesPesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

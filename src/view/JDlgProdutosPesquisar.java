@@ -5,7 +5,7 @@
 package view;
 
 
-import java.util.List;
+
 
 /**
  *
@@ -19,7 +19,7 @@ public class JDlgProdutosPesquisar extends javax.swing.JDialog {
     public JDlgProdutosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setTitle("Pesquisar Usuários");
+        setTitle("Pesquisar Produtos");
         setLocationRelativeTo(null);  
         
        
