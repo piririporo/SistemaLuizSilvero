@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,18 +39,12 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_luiz_silvero?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password"/>
-    <mapping class="bean.LgsVendas"/>
-    <mapping class="bean.LgsIngredientes"/>
-    <mapping class="bean.LgsVendasproduto"/>
-    <mapping class="bean.LgsUsuario"/>
-    <mapping class="bean.LgsClientes"/>
-    <mapping class="bean.LgsProduto"/>
-  </session-factory>
-</hibernate-configuration>
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="db_luiz_silvero"/>
+  <table-filter match-name="lgs_usuario"/>
+  <table-filter match-name="lgs_vendasproduto"/>
+  <table-filter match-name="lgs_produto"/>
+  <table-filter match-name="lgs_vendas"/>
+  <table-filter match-name="lgs_ingredientes"/>
+  <table-filter match-name="lgs_clientes"/>
+</hibernate-reverse-engineering>
