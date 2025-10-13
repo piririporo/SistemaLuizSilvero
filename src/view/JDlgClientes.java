@@ -31,6 +31,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         Util.habilitar(false, jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
          jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel, jBtnCancelar,jBtnConfirmar);
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
