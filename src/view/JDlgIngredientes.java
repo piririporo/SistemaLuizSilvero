@@ -4,6 +4,9 @@
  */
 package view;
 
+import bean.LgsIngredientes;
+import bean.LgsProduto;
+import dao.IngredientesDAO;
 import tools.Util;
 
 
@@ -14,9 +17,8 @@ import tools.Util;
  */
 public class JDlgIngredientes extends javax.swing.JDialog {
    
-    /**
-     * Creates new form JDlgIngredientes
-     */
+    private boolean incluir;
+    
     public JDlgIngredientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
@@ -28,7 +30,32 @@ public class JDlgIngredientes extends javax.swing.JDialog {
                 jTxtQuantidadeEstoque,jTxtUnidadeMedida, jBtnCancelar,jBtnConfirmar);
     
     }
-   
+    public void beanView(LgsIngredientes ingredientes) { 
+        jTxtCodigo.setText(Util.intToStr(ingredientes.getLgsIdIngredientes()));
+        jTxtNome.setText( ingredientes.getLgsNome());
+        jTxtCategoria.setText( ingredientes.getLgsCategoria());
+        jTxtArmazenamento.setText(ingredientes.getLgsArmazenamento());
+        jFmtDataValidade.setText(Util.dateToStr(ingredientes.getLgsDataValidade()));
+        jTxtQuantidadeEstoque.setText(Util.intToStr(ingredientes.getLgsQuantidadeEstoque()));
+        jTxtUnidadeMedida.setText( ingredientes.getLgsUnidadeMedida());
+       
+        
+    }
+    public LgsIngredientes viewBean() {
+        LgsIngredientes ingredientes = new LgsIngredientes();
+        int codigo = Util.strToInt( jTxtCodigo.getText() );                
+        ingredientes.setLgsIdIngredientes(codigo);
+        //usuarios.setIdusuarios(Util.strToInt( jTxtCodigo.getText() ));
+        
+        ingredientes.setLgsNome( jTxtNome.getText());
+        ingredientes.setLgsCategoria(jTxtCategoria.getText());
+        ingredientes.setLgsArmazenamento(jTxtArmazenamento.getText());
+        ingredientes.setLgsDataValidade(Util.strToDate( jFmtDataValidade.getText() ));
+        ingredientes.setLgsQuantidadeEstoque(Util.strToInt(jTxtQuantidadeEstoque.getText()));
+        ingredientes.setLgsUnidadeMedida(jTxtUnidadeMedida.getText());
+                  
+        return ingredientes;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -293,6 +320,7 @@ public class JDlgIngredientes extends javax.swing.JDialog {
       
         Util.limpar(jTxtCodigo,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
                 jTxtQuantidadeEstoque,jTxtUnidadeMedida);
+                incluir = true;
     
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
@@ -304,17 +332,28 @@ public class JDlgIngredientes extends javax.swing.JDialog {
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
       
         Util.limpar(jTxtCodigo,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
-                jTxtQuantidadeEstoque,jTxtUnidadeMedida);      
+                jTxtQuantidadeEstoque,jTxtUnidadeMedida);
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
+        Util.pergunta("Deseja excluir??"); 
+           if (Util.pergunta("Deseja excluir ?") == true) {
+            IngredientesDAO ingredientesDAO = new IngredientesDAO();
+            ingredientesDAO.delete(viewBean());
+        }
          Util.pergunta("Deseja excluir??");   
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-
+        IngredientesDAO ingredientesDAO = new IngredientesDAO();
+        if (incluir == true) {
+            ingredientesDAO.insert( viewBean() );
+        } else {
+            ingredientesDAO.update( viewBean() );
+        }
           Util.habilitar(false,jTxtCodigo,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
                 jTxtQuantidadeEstoque,jTxtUnidadeMedida, jBtnCancelar,jBtnConfirmar);
       

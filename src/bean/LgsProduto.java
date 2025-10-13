@@ -31,7 +31,7 @@ public class LgsProduto  implements java.io.Serializable {
      private Double lgsPreco;
      private String lgsCategoria;
      private String lgsComentario;
-     private Set lgsVendasprodutos = new HashSet(0);
+     
     public LgsProduto() {
     }
 
@@ -51,7 +51,7 @@ public class LgsProduto  implements java.io.Serializable {
        this.lgsPreco = lgsPreco;
        this.lgsCategoria = lgsCategoria;
        this.lgsComentario = lgsComentario;
-       this.lgsVendasprodutos = lgsVendasprodutos;
+       
     }
    
      @Id 
@@ -115,15 +115,15 @@ public class LgsProduto  implements java.io.Serializable {
     public void setLgsComentario(String lgsComentario) {
         this.lgsComentario = lgsComentario;
     }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="lgsProduto")
-    public Set getLgsVendasprodutos() {
-        return this.lgsVendasprodutos;
+    @Column(name="lgs_comentario", length=90)
+    public double getLgsPreco() {
+        return this.lgsPreco;
     }
     
-    public void setLgsVendasprodutos(Set lgsVendasprodutos) {
-        this.lgsVendasprodutos = lgsVendasprodutos;
+    public void setLgsPreco(double lgsPreco) {
+        this.lgsPreco = lgsPreco;
     }
+
 
 
 

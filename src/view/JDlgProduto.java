@@ -4,7 +4,10 @@
  */
 package view;
 
+import bean.LgsIngredientes;
 import tools.Util;
+import bean.LgsProduto;
+import dao.ProdutosDAO;
 
 
 
@@ -14,10 +17,9 @@ import tools.Util;
  */
 public class JDlgProduto extends javax.swing.JDialog {
 
-    /**
-     * Creates new form JDlgProduto
-     */
-    
+  
+    private boolean incluir;
+     
     public JDlgProduto(java.awt.Frame parent, boolean modal) {
          super(parent, modal);
         
@@ -32,7 +34,35 @@ public class JDlgProduto extends javax.swing.JDialog {
     
     }
 
- 
+ public void beanView(LgsProduto produtos) { 
+        jTxtCodigo.setText(Util.intToStr(produtos.getLgsIdProduto()));
+        jTxtCodigoIngredientes.setText(Util.intToStr(produtos.getLgsIngredientes().getLgsIdIngredientes()));
+        jTxtNome.setText( produtos.getLgsNome());
+        jTxtDescricao.setText( produtos.getLgsDescricao());
+         jTxtPreco.setText(String.valueOf(produtos.getLgsPreco()));
+        jTxtCategoria.setText(produtos.getLgsCategoria());
+        jTxtComentario.setText( produtos.getLgsComentario());
+        
+        
+    }
+    public LgsProduto viewBean() {
+        LgsProduto produtos = new LgsProduto();
+        int codigo = Util.strToInt( jTxtCodigo.getText() );                
+        produtos.setLgsIdProduto(codigo);
+        
+        LgsIngredientes ingrediente = new LgsIngredientes();
+        ingrediente.setLgsIdIngredientes(Util.strToInt(jTxtCodigoIngredientes.getText()));
+        produtos.setLgsIngredientes(ingrediente);
+        
+        produtos.setLgsNome( jTxtNome.getText());
+        produtos.setLgsDescricao(jTxtDescricao.getText());
+        produtos.setLgsPreco(Util.strToDouble(jTxtPreco.getText()));
+        produtos.setLgsCategoria(jTxtCategoria.getText());
+        produtos.setLgsComentario(jTxtComentario.getText());
+       
+        return produtos;
+    }
+
 
     
     
@@ -295,6 +325,7 @@ public class JDlgProduto extends javax.swing.JDialog {
       
         Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
                 , jBtnConfirmar, jBtnCancelar);
+        incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
@@ -304,17 +335,29 @@ Util.habilitar(true,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTx
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
       
         Util.limpar(jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
-                , jBtnConfirmar, jBtnCancelar);      
+                , jBtnConfirmar, jBtnCancelar);    
+        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here
+          Util.pergunta("Deseja excluir??"); 
+           if (Util.pergunta("Deseja excluir ?") == true) {
+            ProdutosDAO produtosDAO = new ProdutosDAO();
+            produtosDAO.delete(viewBean());
+           }
          Util.pergunta("Deseja excluir??"); 
          
    
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        if (incluir == true) {
+            produtosDAO.insert( viewBean() );
+        } else {
+            produtosDAO.update( viewBean() );
+        }
         Util.habilitar(false,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
                 , jBtnConfirmar, jBtnCancelar);
       

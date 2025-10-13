@@ -37,14 +37,14 @@ public class LgsClientes  implements java.io.Serializable {
      private String lgsSenha;
      private String lgsStatuscliente;
      private String lgsObservacoes;
-     private String lgsNivel;
+     private int lgsNivel;
      private String lgsAtivo;
 
     public LgsClientes() {
     }
 
 	
-    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsEndereco, String lgsCidade, String lgsEstado, Date lgsDatanascimento, String lgsSenha, String lgsNivel) {
+    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsEndereco, String lgsCidade, String lgsEstado, Date lgsDatanascimento, String lgsSenha, int lgsNivel) {
         this.lgsIdClientes = lgsIdClientes;
         this.lgsNome = lgsNome;
         this.lgsCpf = lgsCpf;
@@ -55,7 +55,7 @@ public class LgsClientes  implements java.io.Serializable {
         this.lgsSenha = lgsSenha;
         this.lgsNivel = lgsNivel;
     }
-    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsTelefone, String lgsEmail, String lgsEndereco, String lgsCidade, String lgsEstado, String lgsCep, Date lgsDatanascimento, String lgsSenha, String lgsStatuscliente, String lgsObservacoes, String lgsNivel, String lgsAtivo, Set lgsVendases) {
+    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsTelefone, String lgsEmail, String lgsEndereco, String lgsCidade, String lgsEstado, String lgsCep, Date lgsDatanascimento, String lgsSenha, String lgsStatuscliente, String lgsObservacoes, int lgsNivel, String lgsAtivo, Set lgsVendases) {
        this.lgsIdClientes = lgsIdClientes;
        this.lgsNome = lgsNome;
        this.lgsCpf = lgsCpf;
@@ -208,11 +208,11 @@ public class LgsClientes  implements java.io.Serializable {
 
     
     @Column(name="lgs_nivel", nullable=false, length=3)
-    public String getLgsNivel() {
+    public int getLgsNivel() {
         return this.lgsNivel;
     }
     
-    public void setLgsNivel(String lgsNivel) {
+    public void setLgsNivel(int lgsNivel) {
         this.lgsNivel = lgsNivel;
     }
 
