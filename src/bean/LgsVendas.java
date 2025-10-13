@@ -30,7 +30,7 @@ public class LgsVendas  implements java.io.Serializable {
      private LgsClientes lgsClientes;
      private LgsUsuario lgsUsuario;
      private Date lgsDataVendas;
-     private Integer lgsFormaPagamento;
+     private int lgsFormaPagamento;
      private Double lgsTotal;
      private String lgsStatusVenda;
 
@@ -43,7 +43,7 @@ public class LgsVendas  implements java.io.Serializable {
         this.lgsClientes = lgsClientes;
         this.lgsUsuario = lgsUsuario;
     }
-    public LgsVendas(int lgsIdVendas, LgsClientes lgsClientes, LgsUsuario lgsUsuario, Date lgsDataVendas, Integer lgsFormaPagamento, Double lgsTotal, String lgsStatusVenda, Set lgsVendasprodutos) {
+    public LgsVendas(int lgsIdVendas, LgsClientes lgsClientes, LgsUsuario lgsUsuario, Date lgsDataVendas, int lgsFormaPagamento, Double lgsTotal, String lgsStatusVenda, Set lgsVendasprodutos) {
        this.lgsIdVendas = lgsIdVendas;
        this.lgsClientes = lgsClientes;
        this.lgsUsuario = lgsUsuario;
@@ -98,11 +98,11 @@ public class LgsVendas  implements java.io.Serializable {
 
     
     @Column(name="lgs_formaPagamento")
-    public Integer getLgsFormaPagamento() {
+    public int getLgsFormaPagamento() {
         return this.lgsFormaPagamento;
     }
     
-    public void setLgsFormaPagamento(Integer lgsFormaPagamento) {
+    public void setLgsFormaPagamento(int lgsFormaPagamento) {
         this.lgsFormaPagamento = lgsFormaPagamento;
     }
 

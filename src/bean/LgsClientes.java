@@ -35,14 +35,16 @@ public class LgsClientes  implements java.io.Serializable {
      private String lgsCep;
      private Date lgsDatanascimento;
      private String lgsSenha;
-     private String lgsStatuscliente;
      private String lgsObservacoes;
      private int lgsNivel;
      private String lgsAtivo;
 
     public LgsClientes() {
     }
-
+    
+    public LgsClientes(int lgsIdClientes) {
+        this.lgsIdClientes = lgsIdClientes;
+    }
 	
     public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsEndereco, String lgsCidade, String lgsEstado, Date lgsDatanascimento, String lgsSenha, int lgsNivel) {
         this.lgsIdClientes = lgsIdClientes;
@@ -55,7 +57,7 @@ public class LgsClientes  implements java.io.Serializable {
         this.lgsSenha = lgsSenha;
         this.lgsNivel = lgsNivel;
     }
-    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsTelefone, String lgsEmail, String lgsEndereco, String lgsCidade, String lgsEstado, String lgsCep, Date lgsDatanascimento, String lgsSenha, String lgsStatuscliente, String lgsObservacoes, int lgsNivel, String lgsAtivo, Set lgsVendases) {
+    public LgsClientes(int lgsIdClientes, String lgsNome, String lgsCpf, String lgsTelefone, String lgsEmail, String lgsEndereco, String lgsCidade, String lgsEstado, String lgsCep, Date lgsDatanascimento, String lgsSenha, String lgsObservacoes, int lgsNivel, String lgsAtivo, Set lgsVendases) {
        this.lgsIdClientes = lgsIdClientes;
        this.lgsNome = lgsNome;
        this.lgsCpf = lgsCpf;
@@ -67,7 +69,6 @@ public class LgsClientes  implements java.io.Serializable {
        this.lgsCep = lgsCep;
        this.lgsDatanascimento = lgsDatanascimento;
        this.lgsSenha = lgsSenha;
-       this.lgsStatuscliente = lgsStatuscliente;
        this.lgsObservacoes = lgsObservacoes;
        this.lgsNivel = lgsNivel;
        this.lgsAtivo = lgsAtivo;
@@ -187,14 +188,6 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_statuscliente", length=1)
-    public String getLgsStatuscliente() {
-        return this.lgsStatuscliente;
-    }
-    
-    public void setLgsStatuscliente(String lgsStatuscliente) {
-        this.lgsStatuscliente = lgsStatuscliente;
-    }
 
     
     @Column(name="lgs_observacoes", length=100)
@@ -226,7 +219,10 @@ public class LgsClientes  implements java.io.Serializable {
         this.lgsAtivo = lgsAtivo;
     }
 
-
+@Override
+    public String toString() {
+        return this.lgsNome;
+    }
 
 
 }

@@ -35,7 +35,9 @@ public class LgsUsuario  implements java.io.Serializable {
 
     public LgsUsuario() {
     }
-
+    public LgsUsuario(int lgsIdUsuario) {
+        this.lgsIdUsuario = lgsIdUsuario;
+    }
 	
     public LgsUsuario(int lgsIdUsuario, String lgsNome, String lgsCpf, int lgsNivel) {
         this.lgsIdUsuario = lgsIdUsuario;
@@ -137,6 +139,10 @@ public class LgsUsuario  implements java.io.Serializable {
     }
 
 
+@Override
+    public String toString() {
+        return this.lgsNome;
+    }
 
 
 

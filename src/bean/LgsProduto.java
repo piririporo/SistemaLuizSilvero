@@ -115,7 +115,7 @@ public class LgsProduto  implements java.io.Serializable {
     public void setLgsComentario(String lgsComentario) {
         this.lgsComentario = lgsComentario;
     }
-    @Column(name="lgs_comentario", length=90)
+    @Column(name="lgs_preco", length=90)
     public double getLgsPreco() {
         return this.lgsPreco;
     }
