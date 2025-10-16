@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDlgProdutosPesquisar extends javax.swing.JDialog {
     JDlgProduto jDlgProduto;
+       ControllerProdutos controllerProdutos;
     
     /**
      * Creates new form JDlgUsuariosPesquisar
@@ -141,8 +142,9 @@ public void setTelaPai(JDlgProduto jDlgProduto){
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        // TODO add your handling code here:
-        System.exit(0);
+       LgsProduto produtos =  controllerProdutos.getBean( jTable1.getSelectedRow() );
+        jDlgProduto.beanView(produtos);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

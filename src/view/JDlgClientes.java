@@ -234,6 +234,11 @@ public class JDlgClientes extends javax.swing.JDialog {
             }
         });
 
+        try {
+            jFmtDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFmtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtDataNascimentoActionPerformed(evt);

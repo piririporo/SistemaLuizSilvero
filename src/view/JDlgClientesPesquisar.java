@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDlgClientesPesquisar extends javax.swing.JDialog {
     JDlgClientes jDlgClientes;
+     ControllerClientes controllerClientes;
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
@@ -143,7 +144,9 @@ public void setTelaPai(JDlgClientes jDlgClientes){
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-              System.exit(0);
+           LgsClientes clientes =  controllerClientes.getBean( jTable1.getSelectedRow() );
+        jDlgClientes.beanView(clientes);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

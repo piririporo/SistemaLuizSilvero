@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDlgIngredientesPesquisar extends javax.swing.JDialog {
     JDlgIngredientes jDlgIngredientes;
+    ControllerIngredientes controllerIngredientes;
     /**
      * Creates new form JDlgProdutoPesquisar
      */
@@ -146,7 +147,9 @@ public void setTelaPai(JDlgIngredientes jDlgIngredientes){
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+      LgsIngredientes ingredientes =  controllerIngredientes.getBean( jTable1.getSelectedRow() );
+        jDlgIngredientes.beanView(ingredientes);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

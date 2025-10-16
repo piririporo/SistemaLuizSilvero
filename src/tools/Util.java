@@ -66,9 +66,19 @@ public class Util {
     }
 
       public static Date strToDate(String data) {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    try {
+        return sdf.parse(data);
+    } catch (ParseException e) {
+        mensagem("Data inválida. Use o formato dd/MM/yyyy.");
         return null;
     }
-    public static String dateToStr(Date data) {
-        return "";
-    }
+}
+
+public static String dateToStr(Date data) {
+    if (data == null) return "";
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    return sdf.format(data);
+}
+
 }
