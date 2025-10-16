@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import static org.hibernate.type.descriptor.java.DateTypeDescriptor.DATE_FORMAT;
 
 /**
  *
@@ -64,7 +65,7 @@ public class Util {
 
     }
 
-    public static Date strToDate(String data) {
+      public static Date strToDate(String data) {
         return null;
     }
     public static String dateToStr(Date data) {

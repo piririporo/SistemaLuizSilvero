@@ -132,11 +132,11 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 970, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+            .addGap(0, 479, Short.MAX_VALUE)
         );
 
         pack();
@@ -177,7 +177,8 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     private void JMnuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMnuVendasActionPerformed
         // TODO add your handling code here:
-        
+        JDlgVendas JDlgVendas = new JDlgVendas(this, true);
+        JDlgVendas.setVisible(true);
             
     }//GEN-LAST:event_JMnuVendasActionPerformed
 

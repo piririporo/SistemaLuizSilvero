@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
+import bean.LgsUsuario;
+import dao.UsuarioDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author USER
@@ -18,8 +21,42 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Usuários");
         setLocationRelativeTo(null);  
-        
+            carregarUsuarios();
        
+    }
+    private void carregarUsuarios() {
+        try {
+            UsuarioDAO dao = new UsuarioDAO();
+            List<LgsUsuario> listaUsuarios = (List<LgsUsuario>) dao.listAll();
+            atualizarTabela(listaUsuarios);
+            atualizarContador(listaUsuarios.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void atualizarTabela(List<LgsUsuario> listaUsuario) {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        for (LgsUsuario usuario : listaUsuario) {
+            model.addRow(new Object[]{
+                usuario.getLgsIdUsuario(),
+                usuario.getLgsNome(),
+                usuario.getLgsSenha(),
+                usuario.getLgsCpf()
+            });
+        }
+    }
+    
+    private void atualizarContador(int total) {
+        if (total == 0) {
+            lblTotalUsuarios.setText("Nenhum usuário cadastrado");
+        } else if (total == 1) {
+            lblTotalUsuarios.setText("1 usuário cadastrado");
+        } else {
+            lblTotalUsuarios.setText(total + " usuários cadastrados");
+        }
     }
 public void setTelaPai(JDlgUsuarios jDlgUsuarios){
     this.jDlgUsuarios = jDlgUsuarios;
@@ -36,6 +73,7 @@ public void setTelaPai(JDlgUsuarios jDlgUsuarios){
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        lblTotalUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -59,25 +97,32 @@ public void setTelaPai(JDlgUsuarios jDlgUsuarios){
             }
         });
 
+        lblTotalUsuarios.setText("Total de Usuários :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnOk)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotalUsuarios)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblTotalUsuarios)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -135,5 +180,6 @@ public void setTelaPai(JDlgUsuarios jDlgUsuarios){
     private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalUsuarios;
     // End of variables declaration//GEN-END:variables
 }

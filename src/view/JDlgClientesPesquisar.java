@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
+import bean.LgsClientes;
+import dao.ClientesDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -21,9 +24,54 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("clienets Pesquisar");
         setLocationRelativeTo(null);  
-        
+         carregarClientes();
        
     }
+    private void carregarClientes() {
+        try {
+            ClientesDAO dao = new ClientesDAO();
+            List<LgsClientes> listaClientes = (List<LgsClientes>) dao.listAll();
+            
+           
+            atualizarTabela(listaClientes);
+            
+           
+            atualizarContador(listaClientes.size());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+   
+    private void atualizarTabela(List<LgsClientes> listaClientes) {
+       
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+      
+        for (LgsClientes cliente : listaClientes) {
+            model.addRow(new Object[]{
+                cliente.getLgsIdClientes(),
+                cliente.getLgsNome(),
+                cliente.getLgsEmail(),
+                cliente.getLgsTelefone()
+              
+            });
+        }
+    }
+    
+  
+    private void atualizarContador(int total) {
+        if (total == 0) {
+            lblTotalClientes.setText("Nenhum cliente cadastrado");
+        } else if (total == 1) {
+            lblTotalClientes.setText("1 cliente cadastrado");
+        } else {
+            lblTotalClientes.setText(total + " clientes cadastrados");
+        }
+    }
+    
 public void setTelaPai(JDlgClientes jDlgClientes){
     this.jDlgClientes = jDlgClientes;
 }
@@ -39,6 +87,7 @@ public void setTelaPai(JDlgClientes jDlgClientes){
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        lblTotalClientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,25 +111,31 @@ public void setTelaPai(JDlgClientes jDlgClientes){
             }
         });
 
+        lblTotalClientes.setText("Total de Clientess: 0 ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnOk)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotalClientes)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk))
+                .addComponent(lblTotalClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -140,5 +195,6 @@ public void setTelaPai(JDlgClientes jDlgClientes){
     private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalClientes;
     // End of variables declaration//GEN-END:variables
 }

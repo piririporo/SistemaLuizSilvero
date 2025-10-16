@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
+import bean.LgsIngredientes;
+import dao.IngredientesDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -21,8 +25,53 @@ public class JDlgIngredientesPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Ingredientes");
         setLocationRelativeTo(null);  
+        carregarIngredientes();
         
       
+    }
+     private void carregarIngredientes() {
+        try {
+            IngredientesDAO dao = new IngredientesDAO();
+            List<LgsIngredientes> listaIngredientes = (List<LgsIngredientes>) dao.listAll();
+            
+           
+            atualizarTabela(listaIngredientes);
+            
+      
+            atualizarContador(listaIngredientes.size());
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+  
+    private void atualizarTabela(List<LgsIngredientes> listaIngredientes) {
+        // Limpa a tabela
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+ 
+        for (LgsIngredientes ingrediente : listaIngredientes) {
+            model.addRow(new Object[]{
+                ingrediente.getLgsIdIngredientes(),
+                ingrediente.getLgsNome(),
+                ingrediente.getLgsQuantidadeEstoque(),
+                ingrediente.getLgsUnidadeMedida()
+               
+            });
+        }
+    }
+    
+  
+    private void atualizarContador(int total) {
+        if (total == 0) {
+            lblTotalIngredientes.setText("Nenhum ingrediente cadastrado");
+        } else if (total == 1) {
+            lblTotalIngredientes.setText("1 ingrediente cadastrado");
+        } else {
+            lblTotalIngredientes.setText(total + " ingredientes cadastrados");
+        }
     }
 public void setTelaPai(JDlgIngredientes jDlgIngredientes){
     this.jDlgIngredientes = jDlgIngredientes;
@@ -39,6 +88,7 @@ public void setTelaPai(JDlgIngredientes jDlgIngredientes){
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        lblTotalIngredientes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,25 +112,33 @@ public void setTelaPai(JDlgIngredientes jDlgIngredientes){
             }
         });
 
+        lblTotalIngredientes.setText("Total de Ingredientes :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnOk))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTotalIngredientes)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTotalIngredientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -144,5 +202,6 @@ public void setTelaPai(JDlgIngredientes jDlgIngredientes){
     private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalIngredientes;
     // End of variables declaration//GEN-END:variables
 }

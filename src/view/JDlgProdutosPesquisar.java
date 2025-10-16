@@ -4,6 +4,11 @@
  */
 package view;
 
+import bean.LgsProduto;
+import dao.ProdutosDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 
 
 
@@ -13,6 +18,7 @@ package view;
  */
 public class JDlgProdutosPesquisar extends javax.swing.JDialog {
     JDlgProduto jDlgProduto;
+    
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
@@ -21,9 +27,48 @@ public class JDlgProdutosPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Produtos");
         setLocationRelativeTo(null);  
-        
+          carregarProdutos();
        
     }
+    private void atualizarContador(int total) {
+    if (total == 0) {
+        lblTotalProdutos.setText("Nenhum produto cadastrado");
+    } else if (total == 1) {
+        lblTotalProdutos.setText("1 produto cadastrado");
+    } else {
+        lblTotalProdutos.setText(total + " produtos cadastrados");
+    }
+}
+    private void atualizarTabela(List<LgsProduto> listaProdutos) {
+    
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+    
+    
+    for (LgsProduto produto : listaProdutos) {
+        model.addRow(new Object[]{
+            produto.getLgsIdProduto(),
+            produto.getLgsNome(),
+            produto.getLgsPreco(),
+            produto.getLgsCategoria()
+        });
+    }
+}
+    private void carregarProdutos() {
+    try {
+        ProdutosDAO dao = new ProdutosDAO();
+        List<LgsProduto> listaProdutos = (List<LgsProduto>) dao.listAll();
+        
+        
+        atualizarTabela(listaProdutos);
+        
+        
+        atualizarContador(listaProdutos.size());
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 public void setTelaPai(JDlgProduto jDlgProduto){
     this.jDlgProduto = jDlgProduto;
 }
@@ -39,6 +84,7 @@ public void setTelaPai(JDlgProduto jDlgProduto){
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        lblTotalProdutos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -62,25 +108,33 @@ public void setTelaPai(JDlgProduto jDlgProduto){
             }
         });
 
+        lblTotalProdutos.setText("Total de produtos: 0 ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnOk))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTotalProdutos)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTotalProdutos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtnOk, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -140,5 +194,6 @@ public void setTelaPai(JDlgProduto jDlgProduto){
     private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalProdutos;
     // End of variables declaration//GEN-END:variables
 }
