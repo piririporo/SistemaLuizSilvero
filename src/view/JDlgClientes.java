@@ -526,7 +526,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-       Util.habilitar(true,jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
+       Util.habilitar(true,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
          jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel,jBtnConfirmar, jBtnCancelar);
       
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
