@@ -25,42 +25,25 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("clienets Pesquisar");
         setLocationRelativeTo(null);  
-         carregarClientes();
-       
+         
+         controllerClientes = new ControllerClientes();
+        ClientesDAO clientesDAO = new ClientesDAO();
+        List lista = (List) clientesDAO.listAll();
+        controllerClientes.setList(lista);
+        jTable1.setModel(controllerClientes);
+        carregarClientes();
     }
     private void carregarClientes() {
         try {
             ClientesDAO dao = new ClientesDAO();
             List<LgsClientes> listaClientes = (List<LgsClientes>) dao.listAll();
-            
-           
-            atualizarTabela(listaClientes);
-            
-           
             atualizarContador(listaClientes.size());
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
    
-    private void atualizarTabela(List<LgsClientes> listaClientes) {
-       
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        
-      
-        for (LgsClientes cliente : listaClientes) {
-            model.addRow(new Object[]{
-                cliente.getLgsIdClientes(),
-                cliente.getLgsNome(),
-                cliente.getLgsEmail(),
-                cliente.getLgsTelefone()
-              
-            });
-        }
-    }
     
   
     private void atualizarContador(int total) {
@@ -73,7 +56,7 @@ public class JDlgClientesPesquisar extends javax.swing.JDialog {
         }
     }
     
-public void setTelaPai(JDlgClientes jDlgClientes){
+public void setTelaAnterior(JDlgClientes jDlgClientes){
     this.jDlgClientes = jDlgClientes;
 }
     /**
@@ -134,9 +117,10 @@ public void setTelaPai(JDlgClientes jDlgClientes){
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblTotalClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnOk, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jBtnOk))
         );
 
         pack();
@@ -144,7 +128,7 @@ public void setTelaPai(JDlgClientes jDlgClientes){
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-           LgsClientes clientes =  controllerClientes.getBean( jTable1.getSelectedRow() );
+         LgsClientes clientes =  controllerClientes.getBean( jTable1.getSelectedRow() );
         jDlgClientes.beanView(clientes);
         this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed

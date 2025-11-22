@@ -4,10 +4,10 @@
  */
 package view;
 
-import bean.LgsIngredientes;
-import bean.LgsProduto;
-import dao.IngredientesDAO;
 import tools.Util;
+import bean.LgsIngredientes;
+import dao.IngredientesDAO;
+
 
 
 
@@ -21,6 +21,7 @@ public class JDlgIngredientes extends javax.swing.JDialog {
     
     public JDlgIngredientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+         initComponents();
         
         setTitle("Cadastro de Ingredientes");
         

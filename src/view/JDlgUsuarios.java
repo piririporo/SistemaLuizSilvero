@@ -331,8 +331,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
-          Util.pergunta("Deseja excluir??"); 
+        // TODO add your handling code her
            if (Util.pergunta("Deseja excluir ?") == true) {
             UsuarioDAO usuariosDAO = new UsuarioDAO();
             usuariosDAO.delete(viewBean());
@@ -345,7 +344,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
         JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
-        jDlgUsuariosPesquisar.setTelaPai(this);
+        jDlgUsuariosPesquisar.setTelaAnterior(this);
         jDlgUsuariosPesquisar.setVisible(true);
       
         

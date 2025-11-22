@@ -88,7 +88,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_nome", nullable=false, length=45)
+    @Column(name="lgs_nome",  length=45)
     public String getLgsNome() {
         return this.lgsNome;
     }
@@ -98,7 +98,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_cpf", nullable=false, length=14)
+    @Column(name="lgs_cpf",length=14)
     public String getLgsCpf() {
         return this.lgsCpf;
     }
@@ -128,7 +128,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_endereco", nullable=false, length=45)
+    @Column(name="lgs_endereco", length=45)
     public String getLgsEndereco() {
         return this.lgsEndereco;
     }
@@ -138,7 +138,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_cidade", nullable=false, length=45)
+    @Column(name="lgs_cidade",  length=45)
     public String getLgsCidade() {
         return this.lgsCidade;
     }
@@ -148,7 +148,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_estado", nullable=false, length=2)
+    @Column(name="lgs_estado",  length=2)
     public String getLgsEstado() {
         return this.lgsEstado;
     }
@@ -168,7 +168,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="lgs_datanascimento", nullable=false, length=10)
+    @Column(name="lgs_datanascimento",  length=10)
     public Date getLgsDatanascimento() {
         return this.lgsDatanascimento;
     }
@@ -178,7 +178,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_senha", nullable=false, length=100)
+    @Column(name="lgs_senha", length=100)
     public String getLgsSenha() {
         return this.lgsSenha;
     }
@@ -200,7 +200,7 @@ public class LgsClientes  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_nivel", nullable=false, length=3)
+    @Column(name="lgs_nivel", length=3)
     public int getLgsNivel() {
         return this.lgsNivel;
     }

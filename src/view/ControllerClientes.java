@@ -21,7 +21,7 @@ public class ControllerClientes extends AbstractTableModel {
         this.lstClientes = lstClientes;
     }
     
-    public LgsClientes getBean(int rowIndex) {
+        public LgsClientes getBean(int rowIndex) {
         return (LgsClientes) lstClientes.get(rowIndex);
     }
 

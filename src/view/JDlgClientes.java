@@ -28,7 +28,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         
         Util.habilitar(false, jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel, jBtnCancelar,jBtnConfirmar);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel, jBtnCancelar,jBtnConfirmar);
     }
     public void beanView(LgsClientes clientes) { 
         jTxtCodigo.setText(Util.intToStr(clientes.getLgsIdClientes()));
@@ -43,8 +43,8 @@ public class JDlgClientes extends javax.swing.JDialog {
         jFmtCep.setText(clientes.getLgsCep());
         jFmtDataNascimento.setText(Util.dateToStr(clientes.getLgsDatanascimento()));
         jPwdSenha.setText( clientes.getLgsSenha());
-        jCboNivel.setSelectedIndex( clientes.getLgsNivel());
-        //jChbAtivo.setSelected( usuarios.getAtivo().equals("S"));
+        jChbNivel.setSelectedIndex( clientes.getLgsNivel());
+        //jChbAtivo.setSelected( clientes.getAtivo().equals("S"));
         if ( clientes.getLgsAtivo().equals("S") == true) {
             jChbAtivo.setSelected(true);
         } else {
@@ -69,7 +69,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     clientes.setLgsCep(jFmtCep.getText());
     clientes.setLgsDatanascimento(Util.strToDate(jFmtDataNascimento.getText()));
     clientes.setLgsSenha(jPwdSenha.getText());
-    clientes.setLgsNivel(jCboNivel.getSelectedIndex());
+    clientes.setLgsNivel(jChbNivel.getSelectedIndex());
 
     if (jChbAtivo.isSelected()) {
         clientes.setLgsAtivo("S");
@@ -118,7 +118,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         jPwdSenha = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
         jChbAtivo = new javax.swing.JCheckBox();
-        jCboNivel = new javax.swing.JComboBox<>();
+        jChbNivel = new javax.swing.JComboBox<>();
         jFmtTelefone = new javax.swing.JFormattedTextField();
         jFmtCep = new javax.swing.JFormattedTextField();
 
@@ -260,10 +260,10 @@ public class JDlgClientes extends javax.swing.JDialog {
             }
         });
 
-        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionário", "Convidado" }));
-        jCboNivel.addActionListener(new java.awt.event.ActionListener() {
+        jChbNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionário", "Convidado" }));
+        jChbNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCboNivelActionPerformed(evt);
+                jChbNivelActionPerformed(evt);
             }
         });
 
@@ -345,7 +345,7 @@ public class JDlgClientes extends javax.swing.JDialog {
                                 .addComponent(jLabel11)
                                 .addComponent(jTxtObservacoes)
                                 .addComponent(jLabel15)
-                                .addComponent(jCboNivel, 0, 138, Short.MAX_VALUE)
+                                .addComponent(jChbNivel, 0, 138, Short.MAX_VALUE)
                                 .addComponent(jLabel16))
                             .addComponent(jChbAtivo))))
                 .addContainerGap())
@@ -374,7 +374,7 @@ public class JDlgClientes extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jChbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -455,7 +455,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here:
         JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
-        jDlgClientesPesquisar.setTelaPai(this);
+        jDlgClientesPesquisar.setTelaAnterior(this);
         jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
@@ -479,9 +479,9 @@ public class JDlgClientes extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jChbAtivoActionPerformed
 
-    private void jCboNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboNivelActionPerformed
+    private void jChbNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jChbNivelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCboNivelActionPerformed
+    }//GEN-LAST:event_jChbNivelActionPerformed
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
@@ -491,7 +491,7 @@ public class JDlgClientes extends javax.swing.JDialog {
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
       
         Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel);
        incluir = true;
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -505,11 +505,11 @@ public class JDlgClientes extends javax.swing.JDialog {
             clientesDAO.update( viewBean() );
         }
         Util.habilitar(false,jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel,jBtnConfirmar, jBtnCancelar);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel,jBtnConfirmar, jBtnCancelar);
       
         Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel);
         
         
         
@@ -518,20 +518,20 @@ public class JDlgClientes extends javax.swing.JDialog {
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
       Util.habilitar(false,jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel,jBtnConfirmar, jBtnCancelar);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel,jBtnConfirmar, jBtnCancelar);
       
         Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
        Util.habilitar(true,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel,jBtnConfirmar, jBtnCancelar);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel,jBtnConfirmar, jBtnCancelar);
       
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,jFmtTelefone,jTxtEmail,jTxtEnderco,jTxtCidade,jTxtEstado,
-         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jCboNivel);
+         jFmtCep,jFmtDataNascimento,jPwdSenha,jChbAtivo,jTxtObservacoes,jChbNivel);
        incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
@@ -595,8 +595,8 @@ public class JDlgClientes extends javax.swing.JDialog {
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<String> jCboNivel;
     private javax.swing.JCheckBox jChbAtivo;
+    private javax.swing.JComboBox<String> jChbNivel;
     private javax.swing.JFormattedTextField jFmtCep;
     private javax.swing.JFormattedTextField jFmtCpf;
     private javax.swing.JFormattedTextField jFmtDataNascimento;

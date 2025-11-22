@@ -29,6 +29,11 @@ public class JDlgProdutosPesquisar extends javax.swing.JDialog {
         setTitle("Pesquisar Produtos");
         setLocationRelativeTo(null);  
           carregarProdutos();
+          controllerProdutos = new ControllerProdutos();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        controllerProdutos.setList(lista);
+        jTable1.setModel(controllerProdutos);
        
     }
     private void atualizarContador(int total) {
@@ -40,32 +45,11 @@ public class JDlgProdutosPesquisar extends javax.swing.JDialog {
         lblTotalProdutos.setText(total + " produtos cadastrados");
     }
 }
-    private void atualizarTabela(List<LgsProduto> listaProdutos) {
-    
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0);
-    
-    
-    for (LgsProduto produto : listaProdutos) {
-        model.addRow(new Object[]{
-            produto.getLgsIdProduto(),
-            produto.getLgsNome(),
-            produto.getLgsPreco(),
-            produto.getLgsCategoria()
-        });
-    }
-}
     private void carregarProdutos() {
     try {
         ProdutosDAO dao = new ProdutosDAO();
         List<LgsProduto> listaProdutos = (List<LgsProduto>) dao.listAll();
-        
-        
-        atualizarTabela(listaProdutos);
-        
-        
         atualizarContador(listaProdutos.size());
-        
     } catch (Exception e) {
         e.printStackTrace();
     }

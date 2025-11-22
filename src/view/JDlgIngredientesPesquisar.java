@@ -25,44 +25,25 @@ public class JDlgIngredientesPesquisar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Pesquisar Ingredientes");
-        setLocationRelativeTo(null);  
-        carregarIngredientes();
-        
+        setLocationRelativeTo(null);
+        controllerIngredientes = new ControllerIngredientes();
+        IngredientesDAO ingredientesDAO = new IngredientesDAO();
+        List lista = (List) ingredientesDAO.listAll();
+        controllerIngredientes.setList(lista);
+        jTable1.setModel(controllerIngredientes);
       
     }
      private void carregarIngredientes() {
         try {
             IngredientesDAO dao = new IngredientesDAO();
             List<LgsIngredientes> listaIngredientes = (List<LgsIngredientes>) dao.listAll();
-            
-           
-            atualizarTabela(listaIngredientes);
-            
-      
             atualizarContador(listaIngredientes.size());
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
   
-    private void atualizarTabela(List<LgsIngredientes> listaIngredientes) {
-        // Limpa a tabela
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        
- 
-        for (LgsIngredientes ingrediente : listaIngredientes) {
-            model.addRow(new Object[]{
-                ingrediente.getLgsIdIngredientes(),
-                ingrediente.getLgsNome(),
-                ingrediente.getLgsQuantidadeEstoque(),
-                ingrediente.getLgsUnidadeMedida()
-               
-            });
-        }
-    }
     
   
     private void atualizarContador(int total) {

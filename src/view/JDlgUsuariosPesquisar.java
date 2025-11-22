@@ -22,6 +22,11 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         initComponents();
         setTitle("Pesquisar Usuários");
         setLocationRelativeTo(null);  
+        controllerUsuarios = new ControllerUsuarios();
+        UsuarioDAO usuariosDAO = new UsuarioDAO();
+        List lista = (List) usuariosDAO.listAll();
+        controllerUsuarios.setList(lista);
+        jTable1.setModel(controllerUsuarios);
             carregarUsuarios();
        
     }
@@ -29,27 +34,13 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         try {
             UsuarioDAO dao = new UsuarioDAO();
             List<LgsUsuario> listaUsuarios = (List<LgsUsuario>) dao.listAll();
-            atualizarTabela(listaUsuarios);
             atualizarContador(listaUsuarios.size());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
-    private void atualizarTabela(List<LgsUsuario> listaUsuario) {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        
-        for (LgsUsuario usuario : listaUsuario) {
-            model.addRow(new Object[]{
-                usuario.getLgsIdUsuario(),
-                usuario.getLgsNome(),
-                usuario.getLgsSenha(),
-                usuario.getLgsCpf()
-            });
-        }
-    }
-    
+   
     private void atualizarContador(int total) {
         if (total == 0) {
             lblTotalUsuarios.setText("Nenhum usuário cadastrado");
@@ -59,7 +50,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
             lblTotalUsuarios.setText(total + " usuários cadastrados");
         }
     }
-public void setTelaPai(JDlgUsuarios jDlgUsuarios){
+public void setTelaAnterior(JDlgUsuarios jDlgUsuarios){
     this.jDlgUsuarios = jDlgUsuarios;
 }
     /**
@@ -131,7 +122,7 @@ public void setTelaPai(JDlgUsuarios jDlgUsuarios){
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-     LgsUsuario usuarios =  controllerUsuarios.getBean( jTable1.getSelectedRow() );
+        LgsUsuario usuarios =  controllerUsuarios.getBean( jTable1.getSelectedRow() );
         jDlgUsuarios.beanView(usuarios);
         this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
