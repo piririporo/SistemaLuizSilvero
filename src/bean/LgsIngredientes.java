@@ -35,7 +35,9 @@ public class LgsIngredientes  implements java.io.Serializable {
     public LgsIngredientes() {
     }
 
-	
+	public LgsIngredientes(int lgsIdIngredientes) {
+        this.lgsIdIngredientes = lgsIdIngredientes;
+    }
     public LgsIngredientes(int lgsIdIngredientes, String lgsNome, String lgsCategoria, String lgsArmazenamento, Date lgsDataValidade, int lgsQuantidadeEstoque, String lgsUnidadeMedida) {
         this.lgsIdIngredientes = lgsIdIngredientes;
         this.lgsNome = lgsNome;
@@ -127,6 +129,11 @@ public class LgsIngredientes  implements java.io.Serializable {
         this.lgsUnidadeMedida = lgsUnidadeMedida;
     }
 
+
+    @Override
+    public String toString() {
+        return this.lgsNome;
+    }
 
 
 

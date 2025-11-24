@@ -327,13 +327,11 @@ public class JDlgIngredientes extends javax.swing.JDialog {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
  
-          Util.habilitar(true,jTxtCodigo,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
+          Util.habilitar(true,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
                 jTxtQuantidadeEstoque,jTxtUnidadeMedida, jBtnCancelar,jBtnConfirmar);
       
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-      
-        Util.limpar(jTxtCodigo,jTxtNome,jTxtCategoria,jTxtArmazenamento,jFmtDataValidade,
-                jTxtQuantidadeEstoque,jTxtUnidadeMedida);
+    
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

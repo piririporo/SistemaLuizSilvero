@@ -329,7 +329,7 @@ public class JDlgProduto extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-Util.habilitar(true,jTxtCodigo,jTxtCodigoIngredientes,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
+Util.habilitar(true,jTxtNome,jTxtDescricao,jTxtPreco,jTxtCategoria,jTxtComentario
                 , jBtnConfirmar, jBtnCancelar);
       
         Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
