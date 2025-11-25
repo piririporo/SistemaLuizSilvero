@@ -5,6 +5,7 @@
  */
 package dao;
 
+import bean.LgsVendas;
 import bean.LgsVendasproduto;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -48,6 +49,14 @@ public class VendasProdutosDAO extends AbstractDAO{
         session.beginTransaction();
         Criteria criteria = session.createCriteria(LgsVendasproduto.class);
         criteria.add(Restrictions.eq("lgs_id_vendasproduto", codigo));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    }
+     public Object listProdutos(LgsVendas vendas) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(LgsVendasproduto.class);
+        criteria.add(Restrictions.eq("vendas", vendas));
         List lista = criteria.list();
         session.getTransaction().commit();        
         return lista;
