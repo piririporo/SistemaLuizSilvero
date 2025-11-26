@@ -31,8 +31,28 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
         List lista = (List) vendasDAO.listAll();
         controllerVendas.setList(lista);
         jTable1.setModel(controllerVendas);
+         carregarVendas();
     }
-
+ private void carregarVendas() {
+        try {
+            VendasDAO dao = new VendasDAO();
+            List<LgsVendas> listaVendases = (List<LgsVendas>) dao.listAll();
+            atualizarContador(listaVendases.size());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+   
+    private void atualizarContador(int total) {
+        if (total == 0) {
+            lblTotalUsuarios.setText("Nenhum usuário cadastrado");
+        } else if (total == 1) {
+            lblTotalUsuarios.setText("1 usuário cadastrado");
+        } else {
+            lblTotalUsuarios.setText(total + " usuários cadastrados");
+        }
+    }
     public void setTelaAnterior(JDlgVendas jDlgVendas) {
         this.jDlgVendas = jDlgVendas;
     }
@@ -49,6 +69,7 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        lblTotalUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -77,6 +98,8 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
             }
         });
 
+        lblTotalUsuarios.setText("Total de Usuários :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,18 +107,22 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtnOk)))
+                        .addComponent(jBtnOk))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTotalUsuarios)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 985, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(lblTotalUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnOk)
                 .addContainerGap())
         );
@@ -181,5 +208,6 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
     private javax.swing.JButton jBtnOk;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotalUsuarios;
     // End of variables declaration//GEN-END:variables
 }

@@ -73,7 +73,7 @@ public class LgsVendasproduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_quantidadeProduto", nullable=false)
+    @Column(name="lgs_quantidadeProduto", nullable=true)
     public int getLgsQuantidadeProduto() {
         return this.lgsQuantidadeProduto;
     }
@@ -83,7 +83,7 @@ public class LgsVendasproduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_valorUnitario", nullable=false, precision=10)
+    @Column(name="lgs_valorUnitario", nullable=true, precision=10)
     public Double getLgsValorUnitario() {
         return this.lgsValorUnitario;
     }
@@ -93,7 +93,7 @@ public class LgsVendasproduto  implements java.io.Serializable {
     }
 
     
-    @Column(name="lgs_desconto", nullable=false, precision=10)
+    @Column(name="lgs_desconto", nullable=true, precision=10)
     public Double getLgsDesconto() {
         return this.lgsDesconto;
     }

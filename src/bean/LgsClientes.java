@@ -219,9 +219,19 @@ public class LgsClientes  implements java.io.Serializable {
         this.lgsAtivo = lgsAtivo;
     }
 
-@Override
+ @Override
     public String toString() {
-        return this.lgsNome;
+        return this.lgsIdClientes + " - " + this.lgsNome;
+    }
+ @Override
+    public boolean equals(Object object) {
+        if (object instanceof LgsClientes) {
+            LgsClientes clientes = (LgsClientes) object;
+            if (clientes.getLgsIdClientes()== this.getLgsIdClientes()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

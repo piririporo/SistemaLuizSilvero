@@ -43,8 +43,7 @@ public class Util {
     }
 
     public static boolean pergunta(String cad) {
-        JOptionPane.showConfirmDialog(null, cad);
-        return true;
+       return JOptionPane.showConfirmDialog(null, cad) == JOptionPane.YES_OPTION;
     }
 
     public static int strToInt(String num) {

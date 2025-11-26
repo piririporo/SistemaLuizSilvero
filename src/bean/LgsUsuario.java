@@ -141,8 +141,19 @@ public class LgsUsuario  implements java.io.Serializable {
 
 @Override
     public String toString() {
-        return this.lgsNome;
+        return this.lgsIdUsuario + " - " + this.lgsNome;
     }
+    @Override
+    public boolean equals(Object object) {
+        if (object instanceof LgsUsuario) {
+            LgsUsuario usuarios = (LgsUsuario) object;
+            if (usuarios.getLgsIdUsuario()== this.getLgsIdUsuario()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
 

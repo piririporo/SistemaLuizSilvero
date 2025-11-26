@@ -136,7 +136,7 @@
     <Component class="javax.swing.JButton" name="jBtnCancelar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/cancelar.png"/>
+          <Image iconType="3" name="/imagens/cancelar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
@@ -147,7 +147,7 @@
     <Component class="javax.swing.JButton" name="jBtnPesquisar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/pesquisar.png"/>
+          <Image iconType="3" name="/imagens/pesquisar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Pesquisar"/>
       </Properties>
@@ -158,7 +158,7 @@
     <Component class="javax.swing.JButton" name="jBtnIncluir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/incluir.png"/>
+          <Image iconType="3" name="/imagens/incluir.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Incluir"/>
       </Properties>
@@ -169,7 +169,7 @@
     <Component class="javax.swing.JButton" name="jBtnAlterar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/alterar.png"/>
+          <Image iconType="3" name="/imagens/alterar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
@@ -180,7 +180,7 @@
     <Component class="javax.swing.JButton" name="jBtnExcluir">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/Excluir.png"/>
+          <Image iconType="3" name="/imagens/Excluir.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
@@ -191,7 +191,7 @@
     <Component class="javax.swing.JButton" name="jBtnConfirmar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/img/ok.png"/>
+          <Image iconType="3" name="/imagens/ok.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
