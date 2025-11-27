@@ -43,7 +43,6 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JMnuCadastros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cliente.png"))); // NOI18N
         JMnuCadastros.setMnemonic('c');
         JMnuCadastros.setText("Cadastros");
         JMnuCadastros.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +52,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         });
 
         jMnuUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/132244_unknown_person_icon.png"))); // NOI18N
+        jMnuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/132244_unknown_person_icon.png"))); // NOI18N
         jMnuUsuario.setMnemonic('u');
         jMnuUsuario.setText("Usuários");
         jMnuUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +63,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         JMnuCadastros.add(jMnuUsuario);
 
         jMnuClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/132301_list_clien_icon.png"))); // NOI18N
+        jMnuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/132301_list_clien_icon.png"))); // NOI18N
         jMnuClientes.setMnemonic('c');
         jMnuClientes.setText("Clientes");
         jMnuClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +74,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         JMnuCadastros.add(jMnuClientes);
 
         jMnuProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/132341_dollar_financial_finance_banking_money_icon.png"))); // NOI18N
+        jMnuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/132341_dollar_financial_finance_banking_money_icon.png"))); // NOI18N
         jMnuProdutos.setMnemonic('p');
         jMnuProdutos.setText("Produtos");
         jMnuProdutos.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +85,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         JMnuCadastros.add(jMnuProdutos);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/132300_open_file_icon.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/132300_open_file_icon.png"))); // NOI18N
         jMenuItem1.setMnemonic('i');
         jMenuItem1.setText("Ingredientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +97,7 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         JMnuCadastros.add(jSeparator1);
 
         jMnuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMnuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
+        jMnuSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
         jMnuSair.setMnemonic('s');
         jMnuSair.setText("Sair");
         jMnuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -110,11 +109,10 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar3.add(JMnuCadastros);
 
-        JMnuMovimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/venda.png"))); // NOI18N
         JMnuMovimentos.setText("Movimentos");
 
         JMnuVendas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-        JMnuVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/132220_diagram_icon.png"))); // NOI18N
+        JMnuVendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/132300_open_file_icon.png"))); // NOI18N
         JMnuVendas.setMnemonic('v');
         JMnuVendas.setText("Vendas");
         JMnuVendas.addActionListener(new java.awt.event.ActionListener() {

@@ -61,6 +61,17 @@ public class UsuarioDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;    
     }
+    public LgsUsuario verificarLogin(String nome, String senha) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(LgsUsuario.class);
+    criteria.add(Restrictions.eq("lgsNome", nome));
+    criteria.add(Restrictions.eq("lgsSenha", senha));
+    LgsUsuario usuario = (LgsUsuario) criteria.uniqueResult();
+
+    session.getTransaction().commit();
+
+    return usuario;
+}
 
     public static void main(String[] args) {
         UsuarioDAO produtosDAO = new UsuarioDAO();

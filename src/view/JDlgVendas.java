@@ -349,7 +349,7 @@ public class JDlgVendas extends javax.swing.JDialog {
             jCboUsuario, jTxtTotal,
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jFmtData, jCboClientes, jCboUsuario, jTxtTotal);
+       
         incluir = false;
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 

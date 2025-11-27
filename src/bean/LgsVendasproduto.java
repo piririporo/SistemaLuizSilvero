@@ -2,6 +2,8 @@ package bean;
 // Generated 11/10/2025 16:22:09 by Hibernate Tools 4.3.1
 
 
+import bean.LgsProduto;
+import bean.LgsVendas;
 import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -52,7 +54,7 @@ public class LgsVendasproduto  implements java.io.Serializable {
         this.lgsIdVendasproduto = lgsIdVendasproduto;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="lgs_fk_produto", nullable=false)
     public LgsProduto getLgsProduto() {
         return this.lgsProduto;
@@ -62,7 +64,7 @@ public class LgsVendasproduto  implements java.io.Serializable {
         this.lgsProduto = lgsProduto;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="lgs_fk_vendas", nullable=false)
     public LgsVendas getLgsVendas() {
         return this.lgsVendas;
