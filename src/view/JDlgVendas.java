@@ -16,6 +16,7 @@ import dao.VendasProdutosDAO;
 import dao.UsuarioDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
 import tools.Util;
 
 /**
@@ -37,41 +38,44 @@ public class JDlgVendas extends javax.swing.JDialog {
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         
-         Util.habilitar(false, jTxtCodigo, jFmtData, jCboClientes, jCboUsuario,
-                jTxtTotal,
+         Util.habilitar(false, LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario,
+                LgsjTxtTotal,
                 jBtnConfirmar, jBtnCancelar);
-         Util.limpar( jCboClientes, jCboUsuario);
+         Util.limpar(LgsjCboClientes, LgsjCboUsuario);
     
         for (int i = 0; i < lista.size(); i++) {
-            jCboClientes.addItem((LgsClientes) lista.get(i));
+            LgsjCboClientes.addItem((LgsClientes) lista.get(i));
         }
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List listaVend = (List) usuarioDAO.listAll();
         for (Object object : listaVend) {
-            jCboUsuario.addItem((LgsUsuario) object);
+            LgsjCboUsuario.addItem((LgsUsuario) object);
         }
         controllerVendasProd = new ControllerVendasProdutos();
         controllerVendasProd.setList(new ArrayList());
         jTable1.setModel(controllerVendasProd);
     }
+        public JTable getjTable1() {
+        return jTable1;
+    }    
 
     public LgsVendas viewBean() {
         LgsVendas vendas = new LgsVendas();
-        vendas.setLgsIdVendas(Util.strToInt(jTxtCodigo.getText()));
-        vendas.setLgsDataVendas(Util.strToDate(jFmtData.getText()));
-        vendas.setLgsTotal(Util.strToDouble(jTxtTotal.getText()));
-        vendas.setLgsClientes((LgsClientes) jCboClientes.getSelectedItem());
-        vendas.setLgsUsuario((LgsUsuario) jCboUsuario.getSelectedItem());
+        vendas.setLgsIdVendas(Util.strToInt(LgsjTxtCodigo.getText()));
+        vendas.setLgsDataVendas(Util.strToDate(LgsjFmtData.getText()));
+        vendas.setLgsTotal(Util.strToDouble(LgsjTxtTotal.getText()));
+        vendas.setLgsClientes((LgsClientes) LgsjCboClientes.getSelectedItem());
+        vendas.setLgsUsuario((LgsUsuario) LgsjCboUsuario.getSelectedItem());
         return vendas;
     }
 
     public void beanView(LgsVendas vendas) {
-        jTxtCodigo.setText(Util.intToStr(vendas.getLgsIdVendas()));
-        jFmtData.setText(Util.dateToStr(vendas.getLgsDataVendas()));
-        jTxtTotal.setText(Util.doubleToStr(vendas.getLgsTotal()));
-        jCboClientes.setSelectedItem(vendas.getLgsClientes());
-        jCboUsuario.setSelectedItem(vendas.getLgsUsuario());
+        LgsjTxtCodigo.setText(Util.intToStr(vendas.getLgsIdVendas()));
+        LgsjFmtData.setText(Util.dateToStr(vendas.getLgsDataVendas()));
+        LgsjTxtTotal.setText(Util.doubleToStr(vendas.getLgsTotal()));
+        LgsjCboClientes.setSelectedItem(vendas.getLgsClientes());
+        LgsjCboUsuario.setSelectedItem(vendas.getLgsUsuario());
         VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
         List lista = (List) vendasProdutosDAO.listProdutos(vendas);
         controllerVendasProd.setList(lista);
@@ -87,15 +91,15 @@ public class JDlgVendas extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTxtCodigo = new javax.swing.JTextField();
+        LgsjTxtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jFmtData = new javax.swing.JFormattedTextField();
+        LgsjFmtData = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jCboClientes = new javax.swing.JComboBox<LgsClientes>();
-        jCboUsuario = new javax.swing.JComboBox<LgsUsuario>();
+        LgsjCboClientes = new javax.swing.JComboBox<LgsClientes>();
+        LgsjCboUsuario = new javax.swing.JComboBox<LgsUsuario>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTxtTotal = new javax.swing.JTextField();
+        LgsjTxtTotal = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnCancelar = new javax.swing.JButton();
@@ -115,7 +119,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         jLabel2.setText("Data");
 
         try {
-            jFmtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            LgsjFmtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -137,6 +141,11 @@ public class JDlgVendas extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cancelar.png"))); // NOI18N
@@ -224,21 +233,21 @@ public class JDlgVendas extends javax.swing.JDialog {
                                 .addGap(66, 66, 66)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LgsjTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(LgsjFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCboClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(LgsjCboClientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(jCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(LgsjCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LgsjTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(64, 64, 64))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,8 +283,8 @@ public class JDlgVendas extends javax.swing.JDialog {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(LgsjCboUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LgsjTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -283,9 +292,9 @@ public class JDlgVendas extends javax.swing.JDialog {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(LgsjTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LgsjFmtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LgsjCboClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -313,11 +322,11 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
-         Util.habilitar(false, jTxtCodigo, jFmtData, jCboClientes, 
-            jCboUsuario, jTxtTotal,
+         Util.habilitar(false, LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, 
+            LgsjCboUsuario, LgsjTxtTotal,
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jFmtData, jCboClientes, jCboUsuario, jTxtTotal);
+        Util.limpar(LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario, LgsjTxtTotal);
    controllerVendasProd.setList(new ArrayList());
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
@@ -330,23 +339,23 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtCodigo, jFmtData, jCboClientes, 
-            jCboUsuario, jTxtTotal,
+        Util.habilitar(true, LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, 
+            LgsjCboUsuario, LgsjTxtTotal,
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jFmtData, jCboClientes, jCboUsuario, jTxtTotal);
+        Util.limpar(LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario, LgsjTxtTotal);
 
         incluir = true;
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        if (jTxtCodigo.getText().trim().isEmpty()) {
+        if (LgsjTxtCodigo.getText().trim().isEmpty()) {
         Util.mensagem("Pesquise vendas antes de Alterar.");
         return;
     }
-        Util.habilitar(true, jFmtData, jCboClientes, 
-            jCboUsuario, jTxtTotal,
+        Util.habilitar(true, LgsjFmtData, LgsjCboClientes, 
+            LgsjCboUsuario, LgsjTxtTotal,
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        
@@ -355,7 +364,7 @@ public class JDlgVendas extends javax.swing.JDialog {
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-        if (jTxtCodigo.getText().trim().isEmpty()) {
+        if (LgsjTxtCodigo.getText().trim().isEmpty()) {
         Util.mensagem("Pesquise Vendas antes de Excluir.");
         return;
     }
@@ -368,7 +377,7 @@ public class JDlgVendas extends javax.swing.JDialog {
             }
               vendasDAO.delete(viewBean());  
         }
-        Util.limpar(jTxtCodigo, jFmtData, jCboClientes, jCboUsuario, jTxtTotal);
+        Util.limpar(LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario, LgsjTxtTotal);
         controllerVendasProd.setList(new ArrayList());
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
@@ -389,11 +398,11 @@ public class JDlgVendas extends javax.swing.JDialog {
 
         }
 
-        Util.habilitar(false, jTxtCodigo, jFmtData, jCboClientes, 
-            jCboUsuario, jTxtTotal,
+        Util.habilitar(false, LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, 
+            LgsjCboUsuario, LgsjTxtTotal,
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jFmtData, jCboClientes, jCboUsuario, jTxtTotal);
+        Util.limpar(LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario, LgsjTxtTotal);
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
 
     private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
@@ -410,15 +419,24 @@ public class JDlgVendas extends javax.swing.JDialog {
     private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
+        LgsVendasproduto vendasProdutos = controllerVendasProd.getBean(jTable1.getSelectedRow());
+        jDlgVendasProdutos.setTelaAnterior(this, vendasProdutos);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnAlterarProdActionPerformed
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
         // TODO add your handling code here:
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
-        jDlgVendasProdutos.setTelaAnterior(this);
+        jDlgVendasProdutos.setTelaAnterior(this,null);
         jDlgVendasProdutos.setVisible(true);
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            jBtnAlterarProdActionPerformed(null);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -464,6 +482,11 @@ public class JDlgVendas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<LgsClientes> LgsjCboClientes;
+    private javax.swing.JComboBox<LgsUsuario> LgsjCboUsuario;
+    private javax.swing.JFormattedTextField LgsjFmtData;
+    private javax.swing.JTextField LgsjTxtCodigo;
+    private javax.swing.JTextField LgsjTxtTotal;
     private javax.swing.JButton jBtnAlterar;
     private javax.swing.JButton jBtnAlterarProd;
     private javax.swing.JButton jBtnCancelar;
@@ -473,9 +496,6 @@ public class JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JButton jBtnIncluir;
     private javax.swing.JButton jBtnIncluirProd;
     private javax.swing.JButton jBtnPesquisar;
-    private javax.swing.JComboBox<LgsClientes> jCboClientes;
-    private javax.swing.JComboBox<LgsUsuario> jCboUsuario;
-    private javax.swing.JFormattedTextField jFmtData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -483,7 +503,5 @@ public class JDlgVendas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTxtCodigo;
-    private javax.swing.JTextField jTxtTotal;
     // End of variables declaration//GEN-END:variables
 }
