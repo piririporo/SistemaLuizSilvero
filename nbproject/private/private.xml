@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/dao/IngredientesDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/dao/UsuarioDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/view/JFrmPrincipal.java</file>
-            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/dao/VendasProdutosDAO.java</file>
-            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/view/jDlgLogin.java</file>
+            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/view/JDlgConsultaProdutos.java</file>
+            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/view/JDlgVendas.java</file>
+            <file>file:/C:/Users/USER/Documents/trabalhos%20IF/SistemaLuizSilvero/src/dao/ProdutosDAO.java</file>
         </group>
     </open-files>
 </project-private>

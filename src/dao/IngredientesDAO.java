@@ -52,6 +52,32 @@ public class IngredientesDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;
     }
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(LgsIngredientes.class);
+        criteria.add(Restrictions.like("lgsNome", "%"+nome+"%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+    
+    public Object listQuantidade(int quant) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(LgsIngredientes.class);
+        criteria.add(Restrictions.ge("lgsQuantidadeEstoque", quant));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    }
+  public Object listNomeQuant(String nome, int quant) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(LgsIngredientes.class);
+        criteria.add(Restrictions.like("lgsNome", "%"+nome+"%"));
+        criteria.add(Restrictions.ge("lgsQuantidadeEstoque", quant));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+  }
 
     @Override
     public Object listAll() {

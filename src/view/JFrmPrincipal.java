@@ -46,7 +46,8 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         JMnuMovimentos = new javax.swing.JMenu();
         JMnuVendas = new javax.swing.JMenuItem();
         jMnuConsultas = new javax.swing.JMenu();
-        jMnuClientes1 = new javax.swing.JMenu();
+        jMnuConsulClientes = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,8 +174,21 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMnuConsultas.setText("Consultas");
 
-        jMnuClientes1.setText("Clientes");
-        jMnuConsultas.add(jMnuClientes1);
+        jMnuConsulClientes.setText("Clientes");
+        jMnuConsulClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuConsulClientesActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMnuConsulClientes);
+
+        jMenu1.setText("Ingredientes");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+        jMnuConsultas.add(jMenu1);
 
         jMenuBar3.add(jMnuConsultas);
 
@@ -252,6 +266,20 @@ public class JFrmPrincipal extends javax.swing.JFrame {
           jMnuClientesActionPerformed(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jMnuConsulClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuConsulClientesActionPerformed
+        // TODO add your handling code here:
+        JDlgConsultaProdutos JDlgConsultaProdutos = new JDlgConsultaProdutos(this, true);
+        JDlgConsultaProdutos.setVisible(true);
+            
+        
+    }//GEN-LAST:event_jMnuConsulClientesActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+         JDlgConsultaIngredientes JDlgConsultaIngredientes = new JDlgConsultaIngredientes(this, true);
+        JDlgConsultaIngredientes.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -296,10 +324,11 @@ public class JFrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMnuClientes;
-    private javax.swing.JMenu jMnuClientes1;
+    private javax.swing.JMenu jMnuConsulClientes;
     private javax.swing.JMenu jMnuConsultas;
     private javax.swing.JMenuItem jMnuProdutos;
     private javax.swing.JMenuItem jMnuSair;

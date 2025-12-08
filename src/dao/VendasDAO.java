@@ -52,6 +52,45 @@ public class VendasDAO extends AbstractDAO{
         session.getTransaction().commit();        
         return lista;
     }
+public Object listClientes(String nomeDoCliente) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(LgsVendas.class);
+    Criteria clienteCrit = criteria.createCriteria("lgsClientes");
+    clienteCrit.add(Restrictions.like("nome", "%" + nomeDoCliente + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();      
+    return lista;
+}
+    
+   public Object listUsuarios(String nomeDoUsuario) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(LgsVendas.class);
+    Criteria usuarioCrit = criteria.createCriteria("lgsUsuario"); 
+    usuarioCrit.add(Restrictions.like("lgsNome", "%" + nomeDoUsuario + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();      
+    return lista;
+}
+    public Object listTotal(double total) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(LgsVendas.class);
+        criteria.add(Restrictions.ge("lgsTotal", total));
+        List lista = criteria.list();
+        session.getTransaction().commit();        
+        return lista;
+    } 
+  public Object listUsuCliTotal(String nomeDoCliente, String nomeDoUsuario, double total) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(LgsVendas.class);
+    Criteria clienteCrit = criteria.createCriteria("lgsClientes");
+    clienteCrit.add(Restrictions.like("lgsNome", "%" + nomeDoCliente + "%"));
+    Criteria usuarioCrit = criteria.createCriteria("lgsUsuario");
+    usuarioCrit.add(Restrictions.like("lgsNome", "%" + nomeDoUsuario + "%"));
+    criteria.add(Restrictions.ge("lgsTotal", total));
+    List lista = criteria.list();
+    session.getTransaction().commit();      
+    return lista;
+}
 
     @Override
     public Object listAll() {
