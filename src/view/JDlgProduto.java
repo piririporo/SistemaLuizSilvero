@@ -25,7 +25,7 @@ public class JDlgProduto extends javax.swing.JDialog {
         
         initComponents();
         
-        setTitle("Cadastro de Usuaios");
+        setTitle("Cadastro de Produtos");
         
         setLocationRelativeTo(null);
         

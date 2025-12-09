@@ -20,7 +20,7 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Pesquisar Consultas");
+        setTitle("Pesquisar Consultas Vendas");
         controllerConsultasVendas = new ControllerConsultasVendas();
         VendasDAO vendasDAO = new VendasDAO();
         List lista = new ArrayList();
@@ -50,6 +50,7 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
         jBtnConsulta = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTxtUsuarios = new javax.swing.JTextField();
+        jBtnPdf1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,6 +98,14 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
 
         jLabel3.setText("Usuarios");
 
+        jBtnPdf1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/funcionario.png"))); // NOI18N
+        jBtnPdf1.setText("Imprimir");
+        jBtnPdf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPdf1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,6 +116,8 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtnPdf1)
+                        .addGap(18, 18, 18)
                         .addComponent(jBtnOk))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,10 +154,12 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTxtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jBtnConsulta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jBtnOk)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnOk)
+                    .addComponent(jBtnPdf1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -191,6 +204,22 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
     private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTotalActionPerformed
+
+    private void jBtnPdf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPdf1ActionPerformed
+        // TODO add your handling code here:
+       try {
+    boolean completa = jTable1.print();
+    if (completa) {
+        Util.mensagem("PDF gerado com sucesso!");
+    } else {
+        Util.mensagem("A impressão foi cancelada.");
+    }
+} catch (java.awt.print.PrinterException e) {
+    Util.mensagem("Falha ao gerar PDF: " + e.getMessage());
+    System.err.println("Erro de Impressão: " + e.getMessage());
+}
+
+    }//GEN-LAST:event_jBtnPdf1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +281,7 @@ public class JDlgConsultaVendas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsulta;
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JButton jBtnPdf1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

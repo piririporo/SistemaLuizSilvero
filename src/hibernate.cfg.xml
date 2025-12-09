@@ -44,15 +44,18 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     
+
 <!--                            Local host
--->    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_luiz_silvero?zeroDateTimeBehavior=convertToNull</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password"/>
+<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_luiz_silvero?zeroDateTimeBehavior=convertToNull</property>
+    <property nme="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"/>-->
     
-                            <!--Rede Do If-->
-<!--    <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_luiz_silvero?zeroDateTimeBehavior=convertToNull</property>
+                            
+
+<!--                            Rede Do If-->
+    <property name="hibernate.connection.url">jdbc:mysql://10.7.0.51:33062/db_luiz_silvero?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">luiz_silvero</property>
-    <property name="hibernate.connection.password">luiz_silvero</property>-->
+    <property name="hibernate.connection.password">luiz_silvero</property>
     
     <mapping class="bean.LgsVendas"/>
     <mapping class="bean.LgsIngredientes"/>

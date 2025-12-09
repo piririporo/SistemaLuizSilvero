@@ -56,7 +56,7 @@ public Object listClientes(String nomeDoCliente) {
     session.beginTransaction();
     Criteria criteria = session.createCriteria(LgsVendas.class);
     Criteria clienteCrit = criteria.createCriteria("lgsClientes");
-    clienteCrit.add(Restrictions.like("nome", "%" + nomeDoCliente + "%"));
+    clienteCrit.add(Restrictions.like("lgsNome", "%" + nomeDoCliente + "%"));
     List lista = criteria.list();
     session.getTransaction().commit();      
     return lista;
