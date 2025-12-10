@@ -59,6 +59,18 @@ public class JDlgVendas extends javax.swing.JDialog {
         public JTable getjTable1() {
         return jTable1;
     }    
+         public void Total() {
+        double total = 0;
+
+        for (int i = 0; i < controllerVendasProd.getRowCount(); i++) {
+            LgsVendasproduto item = controllerVendasProd.getBean(i);
+
+            double valorItem = item.getLgsQuantidadeProduto()* item.getLgsValorUnitario();
+            total += valorItem;
+        }
+
+        LgsjTxtTotal.setText(String.valueOf(total));
+    }
 
     public LgsVendas viewBean() {
         LgsVendas vendas = new LgsVendas();
@@ -79,6 +91,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
         List lista = (List) vendasProdutosDAO.listProdutos(vendas);
         controllerVendasProd.setList(lista);
+        Total();
     }
 
     /**
@@ -412,16 +425,23 @@ public class JDlgVendas extends javax.swing.JDialog {
         } else {
             if (Util.pergunta("Deseja excluir o produto ?") == true) {
                 controllerVendasProd.removeBean(jTable1.getSelectedRow());
+                Total();
             }
         }
     }//GEN-LAST:event_jBtnExcluirProdActionPerformed
 
     private void jBtnAlterarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarProdActionPerformed
         // TODO add your handling code here:
+        if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Antes de Alterar, selecione um produto.");
+        } else {
+        
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
         LgsVendasproduto vendasProdutos = controllerVendasProd.getBean(jTable1.getSelectedRow());
         jDlgVendasProdutos.setTelaAnterior(this, vendasProdutos);
         jDlgVendasProdutos.setVisible(true);
+        Total();
+        }
     }//GEN-LAST:event_jBtnAlterarProdActionPerformed
 
     private void jBtnIncluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirProdActionPerformed
@@ -429,6 +449,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         JDlgVendasProdutos jDlgVendasProdutos = new JDlgVendasProdutos(null, true);
         jDlgVendasProdutos.setTelaAnterior(this,null);
         jDlgVendasProdutos.setVisible(true);
+        Total();
     }//GEN-LAST:event_jBtnIncluirProdActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
