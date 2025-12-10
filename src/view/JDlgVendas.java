@@ -21,7 +21,7 @@ import tools.Util;
 
 /**
  *
- * @author u1845853
+ * @author eu
  */
 public class JDlgVendas extends javax.swing.JDialog {
 
@@ -353,7 +353,7 @@ public class JDlgVendas extends javax.swing.JDialog {
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
         Util.habilitar(true, LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, 
-            LgsjCboUsuario, LgsjTxtTotal,
+            LgsjCboUsuario, 
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(LgsjTxtCodigo, LgsjFmtData, LgsjCboClientes, LgsjCboUsuario, LgsjTxtTotal);
@@ -368,7 +368,7 @@ public class JDlgVendas extends javax.swing.JDialog {
         return;
     }
         Util.habilitar(true, LgsjFmtData, LgsjCboClientes, 
-            LgsjCboUsuario, LgsjTxtTotal,
+            LgsjCboUsuario, 
             jBtnConfirmar, jBtnCancelar);
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        
